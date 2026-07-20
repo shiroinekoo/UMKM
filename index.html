@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Panduan Digital UMKM Cigondewah Hilir</title>
+<meta name="description" content="Modul praktis pemasaran media sosial &amp; foto produk untuk pelaku UMKM Cigondewah Hilir. Program KKN." />
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            950: '#0b1220',
+            900: '#0f172a',
+            800: '#16213a',
+            700: '#1e2b4d',
+          },
+          accent: {
+            600: '#2563eb',
+            500: '#3b82f6',
+            50: '#eff6ff',
+          },
+          benang: {
+            500: '#e8935a',
+            400: '#f0aa7c',
+          },
+          canvas: '#f8fafc',
+        },
+        fontFamily: {
+          display: ['"Manrope"', 'sans-serif'],
+          body: ['"Inter"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+  html, body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+  h1, h2, h3, h4, .font-display { font-family: 'Manrope', sans-serif; }
+
+  /* Jahitan / stitch divider motif */
+  .stitch {
+    background-image: repeating-linear-gradient(90deg, #cbd5e1 0 10px, transparent 10px 20px);
+    height: 2px;
+  }
+  .stitch-accent {
+    background-image: repeating-linear-gradient(90deg, #e8935a 0 8px, transparent 8px 16px);
+    height: 2px;
+  }
+
+  /* Hide scrollbar for pill nav */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .tab-btn[aria-selected="true"] {
+    background-color: #0f172a;
+    color: #fff;
+  }
+  .tab-btn[aria-selected="true"] .tab-num {
+    background-color: #e8935a;
+    color: #0f172a;
+  }
+
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chev { transform: rotate(180deg); }
+
+  .copy-btn.copied { background-color: #16a34a !important; }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-slow { animation: floatSlow 5s ease-in-out infinite; }
+
+  ::selection { background-color: #e8935a; color: #0f172a; }
+</style>
+</head>
+
+<body class="bg-canvas text-navy-900 antialiased">
+
+<!-- ======================= STICKY NAV ======================= -->
+<header id="top" class="sticky top-0 z-50 bg-navy-900/95 backdrop-blur border-b border-white/10">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="flex items-center justify-between h-14">
+      <a href="#top" class="flex items-center gap-2 shrink-0">
+        <span class="w-8 h-8 rounded-lg bg-accent-600 flex items-center justify-center">
+          <i data-lucide="shirt" class="w-4 h-4 text-white"></i>
+        </span>
+        <span class="font-display font-bold text-white text-sm leading-tight">
+          UMKM Digital<br class="hidden xs:block">
+          <span class="text-benang-400 font-medium text-[11px] tracking-wide">CIGONDEWAH HILIR</span>
+        </span>
+      </a>
+    </div>
+    <nav class="flex gap-2 overflow-x-auto no-scrollbar pb-3 -mt-1">
+      <a href="#modul-1" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">01 Foto Produk</a>
+      <a href="#modul-2" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">02 Canva</a>
+      <a href="#modul-3" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">03 Caption</a>
+      <a href="#modul-4" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">04 WhatsApp</a>
+      <a href="#alat-bantu" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-benang-500/90 text-navy-900 hover:bg-benang-400 transition-colors">✦ Alat Bantu</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="relative bg-navy-900 text-white overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.07]"
+       style="background-image: radial-gradient(circle at 2px 2px, #ffffff 1.5px, transparent 1.5px); background-size: 22px 22px;"></div>
+  <div class="absolute -right-10 top-16 w-40 h-40 rounded-full bg-accent-600/20 blur-3xl float-slow"></div>
+
+  <div class="relative max-w-3xl mx-auto px-4 pt-10 pb-12">
+    <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 text-benang-400 text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full">
+      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+      PROGRAM KERJA KKN DESA CIGONDEWAH HILIR
+    </span>
+
+    <h1 class="font-display font-extrabold text-3xl leading-tight mt-4">
+      Pusat Panduan Digital
+      <span class="text-benang-400">UMKM Cigondewah Hilir</span>
+    </h1>
+
+    <p class="mt-3 text-base text-slate-300 leading-relaxed">
+      Modul praktis pemasaran media sosial &amp; foto produk untuk pelaku usaha lokal — dari konveksi hingga kuliner rumahan.
+    </p>
+
+    <div class="mt-6 flex flex-col gap-2.5">
+      <a href="#modul-1" class="inline-flex items-center justify-center gap-2 bg-accent-600 hover:bg-accent-500 active:scale-[0.98] transition text-white font-semibold text-sm px-5 py-3.5 rounded-xl shadow-lg shadow-accent-600/20">
+        <i data-lucide="play-circle" class="w-4 h-4"></i>
+        Mulai Belajar dari Modul 1
+      </a>
+      <a href="#alat-bantu" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 transition text-white font-semibold text-sm px-5 py-3.5 rounded-xl">
+        <i data-lucide="wand-2" class="w-4 h-4"></i>
+        Coba Alat Bantu Caption
+      </a>
+    </div>
+
+    <!-- quick module chips -->
+    <div class="grid grid-cols-4 gap-2 mt-7">
+      <a href="#modul-1" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="camera" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">Foto<br>Produk</span>
+      </a>
+      <a href="#modul-2" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="palette" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">Desain<br>Canva</span>
+      </a>
+      <a href="#modul-3" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="hash" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">Caption<br>&amp; Tag</span>
+      </a>
+      <a href="#modul-4" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="message-circle" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">WhatsApp<br>Bisnis</span>
+      </a>
+    </div>
+  </div>
+  <div class="stitch-accent w-full"></div>
+</section>
+
+<!-- ======================= MODULES ======================= -->
+<section class="max-w-3xl mx-auto px-4 py-10">
+  <div class="text-center mb-6">
+    <h2 class="font-display font-extrabold text-xl text-navy-900">4 Modul Edukasi Digital</h2>
+    <p class="text-sm text-slate-500 mt-1">Ketuk salah satu modul untuk membuka materi lengkapnya.</p>
+  </div>
+
+  <!-- Tab selector -->
+  <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" role="tablist" id="tab-list">
+    <button data-tab="1" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="true">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">1</span>
+      Foto Produk
+    </button>
+    <button data-tab="2" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="false">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">2</span>
+      Canva
+    </button>
+    <button data-tab="3" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="false">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">3</span>
+      Caption
+    </button>
+    <button data-tab="4" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="false">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">4</span>
+      WhatsApp
+    </button>
+  </div>
+
+  <!-- ===== MODUL 1 ===== -->
+  <div id="modul-1" class="tab-panel active scroll-mt-32" data-panel="1">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="camera" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Fotografi Produk dengan HP Sederhana</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Foto bagus tidak butuh kamera mahal — cukup cahaya dan latar yang tepat.</p>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <div class="space-y-3">
+        <details class="group border border-slate-200 rounded-xl overflow-hidden" open>
+          <summary class="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer bg-slate-50">
+            <span class="flex items-center gap-2.5 text-sm font-semibold text-navy-900">
+              <i data-lucide="sun" class="w-4 h-4 text-benang-500"></i>
+              Tips Pencahayaan
+            </span>
+            <i data-lucide="chevron-down" class="chev w-4 h-4 text-slate-400 transition-transform"></i>
+          </summary>
+          <div class="px-4 py-3 text-sm text-slate-600 leading-relaxed">
+            Manfaatkan sinar matahari alami — hasil foto jauh lebih natural daripada lampu ruangan.
+            <div class="flex gap-2 mt-3">
+              <span class="flex-1 text-center text-xs font-semibold bg-amber-50 text-amber-700 rounded-lg py-2">🌅 08.00–10.00</span>
+              <span class="flex-1 text-center text-xs font-semibold bg-orange-50 text-orange-700 rounded-lg py-2">🌇 15.00–16.30</span>
+            </div>
+          </div>
+        </details>
+
+        <details class="group border border-slate-200 rounded-xl overflow-hidden">
+          <summary class="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer bg-slate-50">
+            <span class="flex items-center gap-2.5 text-sm font-semibold text-navy-900">
+              <i data-lucide="layout" class="w-4 h-4 text-benang-500"></i>
+              Latar Belakang (Background)
+            </span>
+            <i data-lucide="chevron-down" class="chev w-4 h-4 text-slate-400 transition-transform"></i>
+          </summary>
+          <div class="px-4 py-3 text-sm text-slate-600 leading-relaxed">
+            Gunakan kain polos, karton putih, atau alas kayu agar mata pembeli fokus ke produk, bukan latar yang ramai.
+          </div>
+        </details>
+
+        <details class="group border border-slate-200 rounded-xl overflow-hidden">
+          <summary class="flex items-center justify-between gap-3 px-4 py-3 cursor-pointer bg-slate-50">
+            <span class="flex items-center gap-2.5 text-sm font-semibold text-navy-900">
+              <i data-lucide="move-3d" class="w-4 h-4 text-benang-500"></i>
+              Angle / Sudut Foto
+            </span>
+            <i data-lucide="chevron-down" class="chev w-4 h-4 text-slate-400 transition-transform"></i>
+          </summary>
+          <div class="px-4 py-3 text-sm text-slate-600 leading-relaxed space-y-2">
+            <div class="flex items-start gap-2">
+              <span class="text-xs font-bold bg-navy-900 text-white px-2 py-0.5 rounded shrink-0 mt-0.5">FLATLAY</span>
+              <p>Dari atas — cocok untuk makanan, aksesoris, dan produk kecil.</p>
+            </div>
+            <div class="flex items-start gap-2">
+              <span class="text-xs font-bold bg-accent-600 text-white px-2 py-0.5 rounded shrink-0 mt-0.5">EYE LEVEL</span>
+              <p>Sejajar mata — cocok untuk produk kemasan dan pakaian.</p>
+            </div>
+          </div>
+        </details>
+
+        <div class="flex items-start gap-3 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3">
+          <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600 mt-0.5 shrink-0"></i>
+          <p class="text-sm text-emerald-800"><span class="font-semibold">Checklist kebersihan:</span> usap lensa kamera HP sebelum mengambil foto — kotoran tipis pun bikin hasil buram.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODUL 2 ===== -->
+  <div id="modul-2" class="tab-panel scroll-mt-32" data-panel="2">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="palette" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Panduan Desain Promosi di Canva</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Bikin poster promosi rapi tanpa perlu jago desain.</p>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <ol class="space-y-3">
+        <li class="flex gap-3 bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <span class="w-6 h-6 rounded-full bg-navy-900 text-white text-xs font-bold flex items-center justify-center shrink-0">1</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Buka aplikasi <span class="font-semibold">Canva</span> → pilih ukuran <span class="font-semibold">"Posting Instagram" (1080×1080)</span> atau <span class="font-semibold">"Story/Reels" (1080×1920)</span>.</p>
+        </li>
+        <li class="flex gap-3 bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <span class="w-6 h-6 rounded-full bg-navy-900 text-white text-xs font-bold flex items-center justify-center shrink-0">2</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Cari template gratis dengan kata kunci <span class="font-semibold">"Promosi UMKM"</span> atau <span class="font-semibold">"Food Sale / Fashion"</span>.</p>
+        </li>
+        <li class="flex gap-3 bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <span class="w-6 h-6 rounded-full bg-navy-900 text-white text-xs font-bold flex items-center justify-center shrink-0">3</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Masukkan foto produk sendiri ke dalam frame/bingkai yang tersedia.</p>
+        </li>
+        <li class="flex gap-3 bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <span class="w-6 h-6 rounded-full bg-navy-900 text-white text-xs font-bold flex items-center justify-center shrink-0">4</span>
+          <p class="text-sm text-slate-700 leading-relaxed">Sesuaikan teks harga, kontak WA, dan nama usaha. Gunakan maksimal <span class="font-semibold">2 jenis font</span> agar tetap rapi.</p>
+        </li>
+      </ol>
+
+      <a href="https://www.canva.com" target="_blank" rel="noopener" class="mt-4 flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 transition text-white font-semibold text-sm px-4 py-3 rounded-xl">
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+        Buka Canva
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== MODUL 3 ===== -->
+  <div id="modul-3" class="tab-panel scroll-mt-32" data-panel="3">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="hash" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Strategi Posting, Caption &amp; Hashtag</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Caption yang menjual dan waktu posting yang pas.</p>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <h4 class="text-sm font-bold text-navy-900 mb-2 flex items-center gap-2">
+        <i data-lucide="pen-line" class="w-4 h-4 text-benang-500"></i>
+        Formula Caption: Hook + Benefit + CTA
+      </h4>
+      <div class="space-y-2.5">
+        <div class="relative bg-slate-50 border border-slate-200 rounded-xl p-3.5 pr-11">
+          <span class="text-[10px] font-bold text-accent-600 uppercase tracking-wide">Hook</span>
+          <p class="text-sm text-slate-700 mt-0.5 copy-text">Lagi cari baju konveksi berkualitas dengan harga terjangkau?</p>
+          <button class="copy-btn absolute top-3 right-3 w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-accent-600 transition" data-copy="Lagi cari baju konveksi berkualitas dengan harga terjangkau?">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+        <div class="relative bg-slate-50 border border-slate-200 rounded-xl p-3.5 pr-11">
+          <span class="text-[10px] font-bold text-accent-600 uppercase tracking-wide">Benefit</span>
+          <p class="text-sm text-slate-700 mt-0.5 copy-text">Bahan adem, jahitan rapi, langsung dikirim dari Cigondewah Hilir!</p>
+          <button class="copy-btn absolute top-3 right-3 w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-accent-600 transition" data-copy="Bahan adem, jahitan rapi, langsung dikirim dari Cigondewah Hilir!">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+        <div class="relative bg-slate-50 border border-slate-200 rounded-xl p-3.5 pr-11">
+          <span class="text-[10px] font-bold text-accent-600 uppercase tracking-wide">Call to Action</span>
+          <p class="text-sm text-slate-700 mt-0.5 copy-text">Klik link di bio untuk order via WA!</p>
+          <button class="copy-btn absolute top-3 right-3 w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-accent-600 transition" data-copy="Klik link di bio untuk order via WA!">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <h4 class="text-sm font-bold text-navy-900 mt-5 mb-2 flex items-center gap-2">
+        <i data-lucide="tags" class="w-4 h-4 text-benang-500"></i>
+        Hashtag Lokal Rekomendasi
+      </h4>
+      <div class="relative bg-accent-50 border border-accent-100 rounded-xl p-3.5 pr-11">
+        <p class="text-sm text-accent-700 font-medium copy-text leading-relaxed">#UMKMCigondewah #KonveksiCigondewah #KulinerCigondewah #UMKMBandung #ProdukLokal</p>
+        <button class="copy-btn absolute top-3 right-3 w-7 h-7 rounded-lg bg-white border border-accent-100 flex items-center justify-center text-accent-600 transition" data-copy="#UMKMCigondewah #KonveksiCigondewah #KulinerCigondewah #UMKMBandung #ProdukLokal">
+          <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <h4 class="text-sm font-bold text-navy-900 mt-5 mb-2 flex items-center gap-2">
+        <i data-lucide="clock" class="w-4 h-4 text-benang-500"></i>
+        Waktu Posting Terbaik
+      </h4>
+      <div class="flex gap-2">
+        <span class="flex-1 text-center text-xs font-semibold bg-slate-100 text-navy-900 rounded-lg py-2.5">☀️ Siang 12.00–13.00</span>
+        <span class="flex-1 text-center text-xs font-semibold bg-slate-100 text-navy-900 rounded-lg py-2.5">🌙 Malam 18.30–20.00</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODUL 4 ===== -->
+  <div id="modul-4" class="tab-panel scroll-mt-32" data-panel="4">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="message-circle" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Penjualan via WhatsApp Business</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Ubah chat jadi checkout yang cepat dan rapi.</p>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <div class="space-y-3">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <p class="text-sm font-semibold text-navy-900 flex items-center gap-2">
+            <i data-lucide="link" class="w-4 h-4 text-benang-500"></i>
+            Link WA Otomatis
+          </p>
+          <p class="text-sm text-slate-600 mt-1.5">Format link yang langsung membuka chat dengan pesan siap kirim:</p>
+          <div class="relative mt-2 bg-navy-900 rounded-lg p-3 pr-11">
+            <code class="text-xs text-benang-400 break-all copy-text">https://wa.me/628x?text=Halo%20saya%20mau%20order</code>
+            <button class="copy-btn absolute top-2.5 right-2.5 w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition" data-copy="https://wa.me/628x?text=Halo%20saya%20mau%20order">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+          <p class="text-xs text-slate-400 mt-1.5">Ganti "628x" dengan nomor WA usaha kamu (format 62, tanpa angka 0 di depan).</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <p class="text-sm font-semibold text-navy-900 flex items-center gap-2">
+            <i data-lucide="book-image" class="w-4 h-4 text-benang-500"></i>
+            Katalog Produk
+          </p>
+          <p class="text-sm text-slate-600 mt-1.5">Siapkan Katalog Produk di WhatsApp Business agar pembeli bisa lihat-lihat barang langsung dari profil toko, tanpa harus tanya satu-satu.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
+          <p class="text-sm font-semibold text-navy-900 flex items-center gap-2">
+            <i data-lucide="reply" class="w-4 h-4 text-benang-500"></i>
+            Pesan Salam Otomatis
+          </p>
+          <p class="text-sm text-slate-600 mt-1.5">Atur Auto-Reply / Pesan Salam agar pembeli langsung mendapat balasan sopan meski chat masuk di luar jam operasional.</p>
+        </div>
+      </div>
+
+      <a href="https://wa.me/6280000000000?text=Halo%20saya%20mau%20order" target="_blank" rel="noopener" class="mt-4 flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 transition text-white font-semibold text-sm px-4 py-3 rounded-xl">
+        <i data-lucide="send" class="w-4 h-4"></i>
+        Uji Coba Kirim WA
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-3xl mx-auto px-4">
+  <div class="stitch"></div>
+</div>
+
+<!-- ======================= ALAT BANTU / BONUS TOOLS ======================= -->
+<section id="alat-bantu" class="bg-navy-900 scroll-mt-16">
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    <div class="text-center mb-6">
+      <span class="inline-flex items-center gap-1.5 bg-white/10 text-benang-400 text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full">
+        <i data-lucide="wand-2" class="w-3.5 h-3.5"></i> ALAT BANTU
+      </span>
+      <h2 class="font-display font-extrabold text-xl text-white mt-3">Generator Caption Otomatis</h2>
+      <p class="text-sm text-slate-400 mt-1">Isi data produk, caption siap pakai langsung muncul.</p>
+    </div>
+
+    <div class="bg-white rounded-2xl p-5 shadow-xl">
+      <div class="space-y-3">
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Nama Produk</label>
+          <input id="in-produk" type="text" placeholder="Contoh: Kemeja Flanel Katun"
+            class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Harga</label>
+          <input id="in-harga" type="text" placeholder="Contoh: Rp75.000"
+            class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Keunggulan Produk</label>
+          <input id="in-keunggulan" type="text" placeholder="Contoh: bahan adem, jahitan rapi"
+            class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500">Nomor WA (opsional)</label>
+          <input id="in-wa" type="text" placeholder="Contoh: 628123456789"
+            class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+        </div>
+      </div>
+
+      <button id="btn-generate" class="mt-4 w-full flex items-center justify-center gap-2 bg-accent-600 hover:bg-accent-500 active:scale-[0.98] transition text-white font-semibold text-sm px-4 py-3 rounded-xl">
+        <i data-lucide="sparkles" class="w-4 h-4"></i>
+        Buat Caption
+      </button>
+
+      <div id="result-box" class="hidden mt-4 relative bg-slate-50 border border-slate-200 rounded-xl p-4 pr-11">
+        <p id="result-text" class="text-sm text-slate-700 leading-relaxed whitespace-pre-line"></p>
+        <button id="btn-copy-result" class="copy-btn absolute top-3 right-3 w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-accent-600 transition">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Direct action buttons -->
+    <div class="grid grid-cols-3 gap-2.5 mt-5">
+      <a href="https://www.canva.com" target="_blank" rel="noopener" class="flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3.5 transition">
+        <i data-lucide="palette" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[11px] font-semibold text-white">Buka Canva</span>
+      </a>
+      <a href="https://www.instagram.com" target="_blank" rel="noopener" class="flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3.5 transition">
+        <i data-lucide="instagram" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[11px] font-semibold text-white">Buka Instagram</span>
+      </a>
+      <a href="https://wa.me/6280000000000?text=Halo%20saya%20mau%20order" target="_blank" rel="noopener" class="flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3.5 transition">
+        <i data-lucide="message-circle" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[11px] font-semibold text-white">Uji Kirim WA</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="bg-navy-950 text-slate-400">
+  <div class="max-w-3xl mx-auto px-4 py-8">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-accent-600 flex items-center justify-center">
+        <i data-lucide="shirt" class="w-4 h-4 text-white"></i>
+      </span>
+      <span class="font-display font-bold text-white text-sm">UMKM Digital Cigondewah Hilir</span>
+    </div>
+
+    <div class="stitch mt-5 mb-5"></div>
+
+    <div class="flex items-start gap-2.5 bg-white/5 border border-white/10 rounded-xl p-4">
+      <i data-lucide="users" class="w-4 h-4 text-benang-400 mt-0.5 shrink-0"></i>
+      <div>
+        <p class="text-sm font-semibold text-white">Butuh pendampingan lanjutan?</p>
+        <p class="text-xs text-slate-400 mt-1 leading-relaxed">Gabung Grup WA KKN untuk tanya jawab seputar materi setelah seminar.</p>
+        <a href="https://wa.me/6280000000000?text=Halo%20saya%20peserta%20seminar%2C%20mau%20gabung%20grup%20pendampingan%20UMKM" target="_blank" rel="noopener"
+          class="inline-flex items-center gap-1.5 mt-3 text-xs font-semibold bg-emerald-600 hover:bg-emerald-700 transition text-white px-3.5 py-2 rounded-lg">
+          <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+          Gabung Grup Pendampingan
+        </a>
+      </div>
+    </div>
+
+    <p class="text-xs text-slate-500 mt-6 text-center leading-relaxed">
+      Dibuat dengan semangat oleh Tim KKN Desa Cigondewah Hilir.
+    </p>
+  </div>
+</footer>
+
+<!-- back to top -->
+<a href="#top" class="fixed bottom-5 right-5 w-11 h-11 rounded-full bg-accent-600 shadow-lg shadow-accent-600/30 flex items-center justify-center text-white z-40">
+  <i data-lucide="arrow-up" class="w-4 h-4"></i>
+</a>
+
+<script>
+  lucide.createIcons();
+
+  // ---------- Tabs ----------
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  function activateTab(num, scroll) {
+    tabBtns.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === num ? 'true' : 'false'));
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === num));
+    if (scroll) {
+      document.getElementById('modul-' + num).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => activateTab(btn.dataset.tab, true));
+  });
+
+  // ---------- Copy to clipboard (static text blocks) ----------
+  function flashCopied(btn) {
+    const icon = btn.querySelector('i');
+    btn.classList.add('copied');
+    icon.setAttribute('data-lucide', 'check');
+    lucide.createIcons();
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      icon.setAttribute('data-lucide', 'copy');
+      lucide.createIcons();
+    }, 1500);
+  }
+
+  document.querySelectorAll('.copy-btn[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(btn.dataset.copy);
+        flashCopied(btn);
+      } catch (e) {
+        console.error('Gagal menyalin teks', e);
+      }
+    });
+  });
+
+  // ---------- Copywriter Generator ----------
+  const btnGenerate = document.getElementById('btn-generate');
+  const resultBox = document.getElementById('result-box');
+  const resultText = document.getElementById('result-text');
+  const btnCopyResult = document.getElementById('btn-copy-result');
+
+  function buildCaption() {
+    const produk = document.getElementById('in-produk').value.trim() || 'produk kami';
+    const harga = document.getElementById('in-harga').value.trim();
+    const keunggulan = document.getElementById('in-keunggulan').value.trim() || 'kualitas terjamin';
+    const wa = document.getElementById('in-wa').value.trim();
+
+    const hook = `Lagi cari ${produk} berkualitas dengan harga terjangkau?`;
+    const benefit = `${keunggulan.charAt(0).toUpperCase() + keunggulan.slice(1)}, langsung dikirim dari Cigondewah Hilir!`;
+    const hargaLine = harga ? `\nHarga cuma ${harga} aja.` : '';
+    const cta = wa
+      ? `Klik link di bio atau chat WA di wa.me/${wa.replace(/[^0-9]/g, '')} untuk order!`
+      : `Klik link di bio untuk order via WA!`;
+    const tags = `\n\n#UMKMCigondewah #KonveksiCigondewah #KulinerCigondewah #UMKMBandung #ProdukLokal`;
+
+    return `${hook}\n${benefit}${hargaLine}\n${cta}${tags}`;
+  }
+
+  btnGenerate.addEventListener('click', () => {
+    resultText.textContent = buildCaption();
+    resultBox.classList.remove('hidden');
+    resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  btnCopyResult.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(resultText.textContent);
+      flashCopied(btnCopyResult);
+    } catch (e) {
+      console.error('Gagal menyalin caption', e);
+    }
+  });
+
+  // ---------- Jump to tab list when triggered from hero/sticky-nav links ----------
+  document.querySelectorAll('a[href^="#modul-"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const num = link.getAttribute('href').replace('#modul-', '');
+      activateTab(num, false);
+      document.getElementById('tab-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
