@@ -1,7 +1,7 @@
-import Header from '@/components/Header';
-import Modules from '@/components/Modules';
-import DescriptionGenerator from '@/components/DescriptionGenerator';
-import MentorChatbox from '@/components/MentorChatbox';
+import Header from '../components/Header';
+import Modules from '../components/Modules';
+import DescriptionGenerator from '../components/DescriptionGenerator';
+import MentorChatbox from '../components/MentorChatbox';
 
 export default function Home() {
   return (
