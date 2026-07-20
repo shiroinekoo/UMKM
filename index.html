@@ -1,152 +1,778 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Katalog UMKM & Generator Caption AI</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans pb-12">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Panduan Digital UMKM Cigondewah Hilir</title>
+<meta name="description" content="Modul praktis pemasaran media sosial &amp; foto produk untuk pelaku UMKM Cigondewah Hilir. Program KKN." />
 
-  <!-- Header -->
-  <header class="bg-indigo-600 text-white py-6 shadow-md mb-8">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h1 class="text-2xl sm:text-3xl font-bold">Katalog Produk UMKM Desa</h1>
-      <p class="text-indigo-100 mt-1 text-sm sm:text-base">Promosi Produk Lokal & Generator Caption Promosi Otomatis</p>
-    </div>
-  </header>
-
-  <main class="max-w-4xl mx-auto px-4 space-y-8">
-
-    <!-- Form Generator Caption AI -->
-    <section class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center gap-2">
-        <span>✨</span> Generator Caption Pintar (Gemini AI)
-      </h2>
-
-      <div class="space-y-4">
-        <!-- Input Nama & Harga -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Nama Produk</label>
-            <input 
-              id="in-nama-produk" 
-              type="text" 
-              placeholder="Contoh: Keripik Singkong Balado" 
-              class="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Harga (Rp)</label>
-            <input 
-              id="in-harga-produk" 
-              type="text" 
-              placeholder="Contoh: 15.000" 
-              class="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-            />
-          </div>
-        </div>
-
-        <!-- Detail Tambahan -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Keunggulan / Detail Produk (Opsional)</label>
-          <textarea 
-            id="in-detail-produk" 
-            rows="2" 
-            placeholder="Contoh: Renyah, tanpa pengawet, dibuat dari singkong pilihan desa." 
-            class="w-full p-2.5 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
-          ></textarea>
-        </div>
-
-        <!-- Tombol Generate -->
-        <button 
-          onclick="generateCaption()" 
-          id="btn-generate"
-          class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-lg transition duration-200 flex items-center justify-center gap-2"
-        >
-          <span>Buat Caption Promosi</span>
-        </button>
-      </div>
-
-      <!-- Result Area -->
-      <div id="result-box" class="hidden mt-6 pt-4 border-t border-gray-100">
-        <label class="block text-sm font-medium text-gray-700 mb-2">Hasil Caption AI:</label>
-        <div id="caption-output" class="p-4 bg-gray-50 rounded-lg border border-gray-200 text-sm text-gray-800 whitespace-pre-line leading-relaxed"></div>
-        <button 
-          onclick="copyCaption()" 
-          class="mt-3 text-xs bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-1.5 px-3 rounded transition"
-        >
-          📋 Salin Caption
-        </button>
-      </div>
-    </section>
-
-  </main>
-
-  <script>
-    // API Key langsung dimasukkan di variabel JS
-    const GEMINI_API_KEY = "AQ.Ab8RN6IwAfaHR1FbokmuvVKPmfGqJa3yvCPv3_3cZNNKGQkkxA";
-
-    async function generateCaption() {
-      const nama = document.getElementById('in-nama-produk').value.trim();
-      const harga = document.getElementById('in-harga-produk').value.trim();
-      const detail = document.getElementById('in-detail-produk').value.trim();
-
-      const btn = document.getElementById('btn-generate');
-      const resultBox = document.getElementById('result-box');
-      const captionOutput = document.getElementById('caption-output');
-
-      if (!nama || !harga) {
-        alert('Mohon isi Nama Produk dan Harga!');
-        return;
-      }
-
-      btn.disabled = true;
-      btn.innerText = 'Membuat Caption...';
-
-      const promptText = `Buatkan caption promosi media sosial yang menarik, ramah, dan menjual untuk produk UMKM berikut:
-- Nama Produk: ${nama}
-- Harga: Rp ${harga}
-- Detail/Keunggulan: ${detail || 'Tidak ada'}
-
-Sertakan emoji yang relevan dan hashtag di bagian akhir. Gunakan bahasa Indonesia yang santai dan menarik pembeli.`;
-
-      try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: {
+            950: '#0b1220',
+            900: '#0f172a',
+            800: '#16213a',
+            700: '#1e2b4d',
           },
+          accent: {
+            600: '#2563eb',
+            500: '#3b82f6',
+            50: '#eff6ff',
+          },
+          benang: {
+            500: '#e8935a',
+            400: '#f0aa7c',
+          },
+          canvas: '#f8fafc',
+        },
+        fontFamily: {
+          display: ['"Manrope"', 'sans-serif'],
+          body: ['"Inter"', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Lucide Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<style>
+  html, body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+  h1, h2, h3, h4, .font-display { font-family: 'Manrope', sans-serif; }
+
+  /* Jahitan / stitch divider motif */
+  .stitch {
+    background-image: repeating-linear-gradient(90deg, #cbd5e1 0 10px, transparent 10px 20px);
+    height: 2px;
+  }
+  .stitch-accent {
+    background-image: repeating-linear-gradient(90deg, #e8935a 0 8px, transparent 8px 16px);
+    height: 2px;
+  }
+
+  /* Hide scrollbar for pill nav */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .tab-btn[aria-selected="true"] {
+    background-color: #0f172a;
+    color: #fff;
+  }
+  .tab-btn[aria-selected="true"] .tab-num {
+    background-color: #e8935a;
+    color: #0f172a;
+  }
+
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .chev { transform: rotate(180deg); }
+
+  .copy-btn.copied { background-color: #16a34a !important; color: white !important; }
+
+  @keyframes floatSlow {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+  .float-slow { animation: floatSlow 5s ease-in-out infinite; }
+
+  ::selection { background-color: #e8935a; color: #0f172a; }
+</style>
+</head>
+
+<body class="bg-canvas text-navy-900 antialiased">
+
+<!-- ======================= STICKY NAV ======================= -->
+<header id="top" class="sticky top-0 z-50 bg-navy-900/95 backdrop-blur border-b border-white/10">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="flex items-center justify-between h-14">
+      <a href="#top" onclick="scrollToTop(event)" class="flex items-center gap-2 shrink-0">
+        <span class="w-8 h-8 rounded-lg bg-accent-600 flex items-center justify-center">
+          <i data-lucide="shirt" class="w-4 h-4 text-white"></i>
+        </span>
+        <span class="font-display font-bold text-white text-sm leading-tight">
+          UMKM Digital<br class="hidden xs:block">
+          <span class="text-benang-400 font-medium text-[11px] tracking-wide">CIGONDEWAH HILIR</span>
+        </span>
+      </a>
+    </div>
+    <nav class="flex gap-2 overflow-x-auto no-scrollbar pb-3 -mt-1">
+      <a href="#modul-1" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">01 Foto Produk</a>
+      <a href="#modul-2" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">02 Canva</a>
+      <a href="#modul-3" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">03 Caption AI</a>
+      <a href="#modul-4" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 text-white hover:bg-accent-600 transition-colors">04 WhatsApp</a>
+      <a href="#alat-bantu" class="nav-pill shrink-0 text-xs font-semibold px-3 py-1.5 rounded-full bg-benang-500/90 text-navy-900 hover:bg-benang-400 transition-colors">✦ Alat AI & WA</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ======================= HERO ======================= -->
+<section class="relative bg-navy-900 text-white overflow-hidden">
+  <div class="absolute inset-0 opacity-[0.07]"
+       style="background-image: radial-gradient(circle at 2px 2px, #ffffff 1.5px, transparent 1.5px); background-size: 22px 22px;"></div>
+  <div class="absolute -right-10 top-16 w-40 h-40 rounded-full bg-accent-600/20 blur-3xl float-slow"></div>
+
+  <div class="relative max-w-3xl mx-auto px-4 pt-10 pb-12">
+    <span class="inline-flex items-center gap-1.5 bg-white/10 border border-white/15 text-benang-400 text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full">
+      <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+      PROGRAM KERJA KKN 2 UKRI
+    </span>
+
+    <h1 class="font-display font-extrabold text-3xl leading-tight mt-4">
+      Pusat Panduan Digital
+      <span class="text-benang-400">UMKM Cigondewah Hilir</span>
+    </h1>
+
+    <p class="mt-3 text-base text-slate-300 leading-relaxed">
+      Modul praktis pemasaran media sosial &amp; foto produk untuk warga desa — lengkap dengan Generator Caption AI &amp; Pendamping Otomatis.
+    </p>
+
+    <div class="mt-6 flex flex-col sm:flex-row gap-2.5">
+      <a href="#modul-1" class="inline-flex items-center justify-center gap-2 bg-accent-600 hover:bg-accent-500 active:scale-[0.98] transition text-white font-semibold text-sm px-5 py-3.5 rounded-xl shadow-lg shadow-accent-600/20">
+        <i data-lucide="play-circle" class="w-4 h-4"></i>
+        Mulai Belajar Modul
+      </a>
+      <a href="#alat-bantu" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 border border-white/15 transition text-white font-semibold text-sm px-5 py-3.5 rounded-xl">
+        <i data-lucide="bot" class="w-4 h-4"></i>
+        Coba Generator AI & Tools
+      </a>
+    </div>
+
+    <!-- quick module chips -->
+    <div class="grid grid-cols-4 gap-2 mt-7">
+      <a href="#modul-1" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="camera" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">Foto<br>Produk</span>
+      </a>
+      <a href="#modul-2" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="palette" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">Desain<br>Canva</span>
+      </a>
+      <a href="#modul-3" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="sparkles" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">Caption<br>AI</span>
+      </a>
+      <a href="#modul-4" class="quick-chip flex flex-col items-center gap-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl py-3 transition">
+        <i data-lucide="message-square" class="w-5 h-5 text-benang-400"></i>
+        <span class="text-[10px] font-medium text-slate-300 text-center leading-tight">WhatsApp<br>Jualan</span>
+      </a>
+    </div>
+  </div>
+  <div class="stitch-accent w-full"></div>
+</section>
+
+<!-- ======================= MODULES ======================= -->
+<section class="max-w-3xl mx-auto px-4 py-10">
+  <div class="text-center mb-6">
+    <h2 class="font-display font-extrabold text-xl text-navy-900">4 Modul Edukasi Praktis Warga Desa</h2>
+    <p class="text-sm text-slate-500 mt-1">Langkah-langkah sederhana, jelas, dan dilengkapi contoh nyata.</p>
+  </div>
+
+  <!-- Tab selector -->
+  <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1" role="tablist" id="tab-list">
+    <button data-tab="1" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="true">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">1</span>
+      Foto Produk
+    </button>
+    <button data-tab="2" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="false">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">2</span>
+      Canva
+    </button>
+    <button data-tab="3" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="false">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">3</span>
+      Caption AI
+    </button>
+    <button data-tab="4" class="tab-btn shrink-0 flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-full bg-white border border-slate-200 text-navy-900" role="tab" aria-selected="false">
+      <span class="tab-num w-5 h-5 rounded-full bg-slate-100 text-navy-900 flex items-center justify-center text-[10px]">4</span>
+      WhatsApp
+    </button>
+  </div>
+
+  <!-- ===== MODUL 1 ===== -->
+  <div id="modul-1" class="tab-panel active scroll-mt-32" data-panel="1">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="camera" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Cara Foto Produk HP Agar Terlihat Mewah</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Cukup pakai HP biasa dan sinar matahari pagi!</p>
+        </div>
+      </div>
+
+      <!-- Panduan Visual Before After -->
+      <div class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-3">
+        <div class="grid grid-cols-2 gap-2 text-center text-xs">
+          <div class="bg-red-50 border border-red-200 p-2 rounded-lg">
+            <span class="font-bold text-red-600 block mb-1">❌ CONTOH SALAH</span>
+            <p class="text-[11px] text-slate-600">Foto malam hari pakai lampu kamar, latar belakang berantakan / kamar tidur.</p>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 p-2 rounded-lg">
+            <span class="font-bold text-emerald-600 block mb-1">✔ CONTOH BENAR</span>
+            <p class="text-[11px] text-slate-600">Foto jam 9 pagi dekat jendela, pakai alas kain polos / kertas karton.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <div class="space-y-3">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <p class="font-bold text-sm text-navy-900 flex items-center gap-2">
+            <i data-lucide="sun" class="w-4 h-4 text-benang-500"></i>
+            Langkah 1: Gunakan Cahaya Alami
+          </p>
+          <p class="text-xs text-slate-600 mt-1">Foto di luar rumah (teras) atau dekat jendela saat matahari cerah (08.00–10.00). Hindari menggunakan lampu HP karena membuat warna barang berubah.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <p class="font-bold text-sm text-navy-900 flex items-center gap-2">
+            <i data-lucide="image" class="w-4 h-4 text-benang-500"></i>
+            Langkah 2: Alas Foto Bersih & Polos
+          </p>
+          <p class="text-xs text-slate-600 mt-1">Gunakan kain putih polos, kertas karton putih/kuning, atau meja kayu bersih. Jangan sampai latar belakang mengganggu perhatian ke produk.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <p class="font-bold text-sm text-navy-900 flex items-center gap-2">
+            <i data-lucide="sparkles" class="w-4 h-4 text-benang-500"></i>
+            Langkah 3: Bersihkan Lensa HP
+          </p>
+          <p class="text-xs text-slate-600 mt-1">Sebelum jepret, lap lensa kamera HP pakai kain lembut/baju. Kaca kamera sering buram karena minyak dari tangan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODUL 2 ===== -->
+  <div id="modul-2" class="tab-panel scroll-mt-32" data-panel="2">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="palette" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Membuat Poster Promosi di Canva</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Membuat selebaran promosi dalam 3 menit.</p>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <div class="space-y-3">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <span class="font-bold text-xs text-accent-600 uppercase">Contoh Hasil Canva</span>
+          <p class="text-xs text-slate-700 mt-1">
+            Poster dengan foto baju konveksi Cigondewah, tulisan <strong>"PROMO DISKON 10%"</strong> di bagian atas, dan nomor WA di bagian bawah.
+          </p>
+        </div>
+
+        <ol class="space-y-2 text-xs text-slate-700 list-decimal pl-4">
+          <li>Buka aplikasi Canva di HP.</li>
+          <li>Ketik di kolom pencarian: <strong>"Promosi Makanan"</strong> atau <strong>"Baju Konveksi"</strong>.</li>
+          <li>Pilih template gratis yang disukai.</li>
+          <li>Ganti gambarnya dengan foto produk HP Anda sendiri.</li>
+          <li>Ganti tulisan harganya dan nomor WhatsApp toko Anda. Simpan ke galeri!</li>
+        </ol>
+      </div>
+
+      <a href="https://www.canva.com" target="_blank" rel="noopener" class="mt-4 flex items-center justify-center gap-2 bg-navy-900 hover:bg-navy-800 transition text-white font-semibold text-sm px-4 py-3 rounded-xl">
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+        Buka Aplikasi Canva
+      </a>
+    </div>
+  </div>
+
+  <!-- ===== MODUL 3 ===== -->
+  <div id="modul-3" class="tab-panel scroll-mt-32" data-panel="3">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="sparkles" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Trik Menulis Teks Jualan (Caption AI)</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Biarkan AI yang merangkai kata menarik dan hashtag lokal.</p>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="bg-blue-50 border border-blue-200 p-3 rounded-xl">
+          <p class="font-bold text-blue-900 mb-1">Kenapa Harus Pakai Caption Menarik?</p>
+          <p class="leading-relaxed">
+            Pembeli di Instagram/Facebook senang membaca penjelasan ringkas yang ramah, ada info harga, lokasi toko, serta tombol pesan cepat.
+          </p>
+        </div>
+
+        <p class="font-semibold text-navy-900">Contoh Hasil Caption Bagus:</p>
+        <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl italic">
+          "Cari gamis berkualitas langsung dari konveksi Cigondewah Hilir? 🌸 Bahan katun rayón super adem & nyaman dipakai harian. Harga cuma Rp85.000! Yuk order sekarang via WA sebelum kehabisan. Toko: Jl. Cigondewah Hilir No. 12. #UMKMCigondewah #GamisBandung"
+        </div>
+
+        <p class="text-slate-500">
+          👉 <em>Anda tidak perlu pusing memikirkan kata-kata. Gunakan tools <strong>Generator Caption AI</strong> di bagian bawah halaman ini!</em>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODUL 4 ===== -->
+  <div id="modul-4" class="tab-panel scroll-mt-32" data-panel="4">
+    <div class="mt-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="w-10 h-10 rounded-xl bg-accent-50 flex items-center justify-center shrink-0">
+          <i data-lucide="message-square" class="w-5 h-5 text-accent-600"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-lg text-navy-900">Penjualan Otomatis via WhatsApp</h3>
+          <p class="text-sm text-slate-500 mt-0.5">Memudahkan pembeli memesan produk dalam sekali klik.</p>
+        </div>
+      </div>
+
+      <div class="stitch my-5"></div>
+
+      <div class="space-y-3 text-xs text-slate-700">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <p class="font-bold text-navy-900">1. Gunakan WhatsApp Business</p>
+          <p class="mt-1">Download WA Business di Play Store. Anda bisa mengisi jam buka toko, profil usaha, dan alamat lengkap Cigondewah Hilir.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <p class="font-bold text-navy-900">2. Fitur Katalog Produk</p>
+          <p class="mt-1">Masukkan daftar barang beserta harga di fitur 'Katalog' WA Business agar pembeli tinggal memilih barang tanpa bertanya terus-menerus.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5">
+          <p class="font-bold text-navy-900">3. Link Chat Otomatis (wa.me)</p>
+          <p class="mt-1">Buat link khusus yang jika diklik pembeli, langsung memunculkan kalimat: <em>"Halo saya mau order..."</em> (Gunakan Generator Link WA di bawah).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="max-w-3xl mx-auto px-4">
+  <div class="stitch"></div>
+</div>
+
+<!-- ======================= ALAT BANTU / BONUS TOOLS ======================= -->
+<section id="alat-bantu" class="bg-navy-900 scroll-mt-16">
+  <div class="max-w-3xl mx-auto px-4 py-10">
+    
+    <!-- GENERATOR CAPTION GEMINI AI -->
+    <div class="mb-10">
+      <div class="text-center mb-6">
+        <span class="inline-flex items-center gap-1.5 bg-white/10 text-benang-400 text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> POWERED BY GEMINI AI
+        </span>
+        <h2 class="font-display font-extrabold text-xl text-white mt-3">Generator Caption Pintar UMKM</h2>
+        <p class="text-sm text-slate-400 mt-1">AI akan menyesuaikan nama barang, harga, keunggulan, dan alamat secara otomatis.</p>
+      </div>
+
+      <div class="bg-white rounded-2xl p-5 shadow-xl">
+        <div class="space-y-3">
+          <!-- API KEY INPUT (OPSIONAL / JIKA DIPERLUKAN) -->
+          <div>
+            <label class="text-xs font-semibold text-slate-500">Gemini API Key <span class="text-slate-400 font-normal">(Isi jika memiliki API Key sendiri)</span></label>
+            <input id="in-api-key" type="password" placeholder="AIzaSy..."
+              class="mt-1 w-full text-xs border border-slate-200 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-accent-600 bg-slate-50" />
+          </div>
+
+          <div>
+            <label class="text-xs font-semibold text-slate-700">Nama Produk / Barang *</label>
+            <input id="in-produk" type="text" placeholder="Contoh: Daster Rayon Motif / Sepatu Kain"
+              class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-xs font-semibold text-slate-700">Harga *</label>
+              <div class="relative mt-1">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-slate-400 font-medium">Rp</span>
+                <input id="in-harga" type="text" inputmode="numeric" placeholder="65.000"
+                  class="w-full text-sm border border-slate-200 rounded-lg pl-9 pr-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+              </div>
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-slate-700">Nomor WA Toko</label>
+              <input id="in-wa" type="text" placeholder="08123456789"
+                class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-700">Keunggulan / Detail Barang</label>
+            <input id="in-keunggulan" type="text" placeholder="Contoh: bahan lembut, tidak luntur, jahitan kuat"
+              class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+          </div>
+          <div>
+            <label class="text-xs font-semibold text-slate-700">Alamat Toko / Patokan Lokasi</label>
+            <input id="in-alamat" type="text" placeholder="Contoh: RT 02 RW 04 Cigondewah Hilir (Dekat Masjid)"
+              class="mt-1 w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-accent-600" />
+          </div>
+        </div>
+
+        <button id="btn-generate" class="mt-4 w-full flex items-center justify-center gap-2 bg-accent-600 hover:bg-accent-500 active:scale-[0.98] transition text-white font-semibold text-sm px-4 py-3 rounded-xl shadow-md">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          Buat Caption dengan Gemini AI
+        </button>
+
+        <div id="result-box" class="hidden mt-4 relative bg-slate-50 border border-slate-200 rounded-xl p-4 pr-11">
+          <p id="result-text" class="text-sm text-slate-700 leading-relaxed whitespace-pre-line"></p>
+          <button id="btn-copy-result" class="copy-btn absolute top-3 right-3 w-8 h-8 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-accent-600 transition">
+            <i data-lucide="copy" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stitch border-white/10 mb-10"></div>
+
+    <!-- PUSAT AKSES MODUL & MEDIA SOSIAL -->
+    <div class="mb-10">
+      <h3 class="text-base font-bold text-white text-center mb-4">Integrasi Media Sosial & Aplikasi</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        
+        <!-- CANVA TOOL -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 text-benang-400 font-bold text-sm mb-1">
+              <i data-lucide="palette" class="w-4 h-4"></i> Desain Grafis (Canva)
+            </div>
+            <p class="text-xs text-slate-300">Buka Canva langsung untuk mulai mengedit poster promosi produk Anda.</p>
+          </div>
+          <a href="https://www.canva.com" target="_blank" rel="noopener" class="mt-3 inline-flex items-center justify-center gap-1.5 text-xs font-semibold bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition">
+            Buka Canva <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+
+        <!-- INSTAGRAM TOOL -->
+        <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-2 text-pink-400 font-bold text-sm mb-1">
+              <i data-lucide="instagram" class="w-4 h-4"></i> Posting Instagram
+            </div>
+            <p class="text-xs text-slate-300">Buka aplikasi Instagram di HP Anda untuk mengunggah foto & caption produk.</p>
+          </div>
+          <button onclick="openInstagram()" class="mt-3 inline-flex items-center justify-center gap-1.5 text-xs font-semibold bg-white/10 hover:bg-white/20 text-white py-2 rounded-lg transition">
+            Buka Instagram HP <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="stitch border-white/10 mb-10"></div>
+
+    <!-- GENERATOR LINK WHATSAPP TOKO -->
+    <div>
+      <div class="text-center mb-4">
+        <h3 class="text-base font-bold text-white">Generator Link WhatsApp Toko (wa.me)</h3>
+        <p class="text-xs text-slate-400 mt-0.5">Buat link WA jualan otomatis untuk ditaruh di bio Instagram atau media sosial Anda.</p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3">
+        <div>
+          <label class="text-xs text-slate-300 block mb-1">Nomor WhatsApp Anda</label>
+          <input id="wa-gen-num" type="text" placeholder="08123456789" class="w-full text-xs p-2.5 rounded-lg bg-navy-800 text-white border border-white/10 focus:outline-none focus:border-benang-400" />
+        </div>
+        <div>
+          <label class="text-xs text-slate-300 block mb-1">Pesan Otomatis Pembeli</label>
+          <input id="wa-gen-msg" type="text" value="Halo, saya berminat order produk dari Cigondewah Hilir..." class="w-full text-xs p-2.5 rounded-lg bg-navy-800 text-white border border-white/10 focus:outline-none focus:border-benang-400" />
+        </div>
+        <button onclick="generateWaLink()" class="w-full text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white py-2.5 rounded-lg transition flex items-center justify-center gap-1.5">
+          <i data-lucide="link" class="w-3.5 h-3.5"></i> Buat Link Order WA
+        </button>
+
+        <div id="wa-link-output" class="hidden mt-3 bg-navy-800 p-3 rounded-lg border border-white/10 text-xs text-benang-400 break-all flex items-center justify-between gap-2">
+          <span id="wa-link-text"></span>
+          <button onclick="copyWaLink()" class="shrink-0 bg-white/10 hover:bg-white/20 text-white p-1.5 rounded">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======================= ASISTEN PENDAMPING GEMINI AI (CHATBOT) ======================= -->
+<section class="bg-navy-950 border-t border-white/10 py-10">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="bg-navy-900 border border-white/10 rounded-2xl p-5 shadow-2xl">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-9 h-9 rounded-xl bg-accent-600 flex items-center justify-center text-white shrink-0">
+          <i data-lucide="bot" class="w-5 h-5"></i>
+        </span>
+        <div>
+          <h3 class="font-display font-bold text-white text-base">Asisten Pendamping KKN (Gemini AI)</h3>
+          <p class="text-xs text-slate-400">Ada pertanyaan seputar pemasaran digital Cigondewah Hilir? Tanyakan langsung di sini!</p>
+        </div>
+      </div>
+
+      <!-- Chat History -->
+      <div id="chat-box" class="h-48 overflow-y-auto bg-navy-950 border border-white/10 rounded-xl p-3 space-y-3 mb-3 text-xs">
+        <div class="bg-white/10 text-slate-200 p-2.5 rounded-lg max-w-[85%]">
+          Halo warga Cigondewah Hilir! 👋 Saya asisten virtual KKN 2 UKRI. Mau tanya tentang foto produk, ide jualan, atau cara promosi? Ketik di bawah ya!
+        </div>
+      </div>
+
+      <!-- Chat Input -->
+      <div class="flex gap-2">
+        <input id="chat-input" type="text" placeholder="Tanyakan sesuatu..." class="flex-1 text-xs bg-navy-950 border border-white/10 rounded-xl px-3 py-2.5 text-white focus:outline-none focus:border-accent-600" />
+        <button id="chat-send" class="bg-accent-600 hover:bg-accent-500 text-white px-4 py-2.5 rounded-xl font-semibold text-xs flex items-center justify-center shrink-0">
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FOOTER ======================= -->
+<footer class="bg-navy-950 border-t border-white/5 text-slate-400">
+  <div class="max-w-3xl mx-auto px-4 py-8 text-center">
+    <div class="flex items-center justify-center gap-2 mb-3">
+      <span class="w-7 h-7 rounded-lg bg-accent-600 flex items-center justify-center">
+        <i data-lucide="shirt" class="w-3.5 h-3.5 text-white"></i>
+      </span>
+      <span class="font-display font-bold text-white text-sm">UMKM Digital Cigondewah Hilir</span>
+    </div>
+
+    <p class="text-xs text-slate-400 font-medium">
+      Made by KKN 2 UKRI since 2026
+    </p>
+  </div>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button onclick="scrollToTop(event)" id="btn-back-to-top" aria-label="Kembali ke atas" class="fixed bottom-5 right-5 w-11 h-11 rounded-full bg-accent-600 hover:bg-accent-500 shadow-lg shadow-accent-600/30 flex items-center justify-center text-white z-50 transition-all duration-300">
+  <i data-lucide="arrow-up" class="w-5 h-5"></i>
+</button>
+
+<!-- ======================= JAVASCRIPT ======================= -->
+<script>
+  lucide.createIcons();
+
+  // ---------- Scroll to Top Function ----------
+  function scrollToTop(e) {
+    if (e) e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // ---------- Tabs Navigation ----------
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  function activateTab(num, scroll) {
+    tabBtns.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === num ? 'true' : 'false'));
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === num));
+    if (scroll) {
+      document.getElementById('modul-' + num).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => activateTab(btn.dataset.tab, true));
+  });
+
+  // ---------- Auto Format Ribuan ----------
+  const inHarga = document.getElementById('in-harga');
+  inHarga.addEventListener('input', () => {
+    const digitsOnly = inHarga.value.replace(/[^0-9]/g, '');
+    inHarga.value = digitsOnly ? Number(digitsOnly).toLocaleString('id-ID') : '';
+  });
+
+  // ---------- Gemini API Integration (Caption Generator) ----------
+  const btnGenerate = document.getElementById('btn-generate');
+  const resultBox = document.getElementById('result-box');
+  const resultText = document.getElementById('result-text');
+
+  btnGenerate.addEventListener('click', async () => {
+    const apiKey = document.getElementById('in-api-key').value.trim();
+    const produk = document.getElementById('in-produk').value.trim();
+    const harga = document.getElementById('in-harga').value.trim();
+    const keunggulan = document.getElementById('in-keunggulan').value.trim();
+    const wa = document.getElementById('in-wa').value.trim();
+    const alamat = document.getElementById('in-alamat').value.trim();
+
+    if (!produk || !harga) {
+      alert('Mohon isi nama produk dan harga terlebih dahulu.');
+      return;
+    }
+
+    resultBox.classList.remove('hidden');
+    resultText.textContent = "⏳ Sedang memproses caption dengan Gemini AI...";
+
+    // Prompt khusus UMKM Cigondewah Hilir
+    const promptText = `Kamu adalah seorang ahli copywriting media sosial untuk UMKM lokal Desa Cigondewah Hilir.
+Buatkan caption jualan Instagram/Facebook yang menarik, ramah, dan profesional berdasarkan data berikut:
+- Nama Produk: ${produk}
+- Harga: Rp${harga}
+- Keunggulan / Detail: ${keunggulan || 'Kualitas terjamin, nyaman dipakai'}
+- Alamat Toko: ${alamat || 'Desa Cigondewah Hilir'}
+- WhatsApp Order: ${wa || 'Cek Link Bio'}
+
+Ketentuan Caption:
+1. Awali dengan Hook (kalimat pemikat) yang menarik.
+2. Jelaskan keunggulan dan sertakan harganya dengan jelas.
+3. Cantumkan alamat/lokasi toko.
+4. Akhiri dengan Call to Action (ajakan beli via WA) dan 4-5 Hashtag lokal yang relevan (seperti #UMKMCigondewahHililr #KulinerCigondewah #KonveksiCigondewah #ProdukLokal). Jangan gunakan tanda kutip di luar caption.`;
+
+    if (apiKey) {
+      // Pemanggilan Gemini API Menggunakan Key Pribadi
+      try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            contents: [{
-              parts: [{ text: promptText }]
-            }]
+            contents: [{ parts: [{ text: promptText }] }]
           })
         });
-
         const data = await response.json();
-
-        if (data.error) {
-          alert('Error: ' + data.error.message);
+        if (data.candidates && data.candidates[0].content.parts[0].text) {
+          resultText.textContent = data.candidates[0].content.parts[0].text.trim();
         } else {
-          const textResult = data.candidates[0].content.parts[0].text;
-          captionOutput.innerText = textResult;
-          resultBox.classList.remove('hidden');
+          throw new Error("Respon API tidak valid");
         }
       } catch (err) {
-        alert('Gagal menghubungkan ke AI. Periksa koneksi internet atau API Key Anda.');
         console.error(err);
-      } finally {
-        btn.disabled = false;
-        btn.innerText = 'Buat Caption Promosi';
+        resultText.textContent = fallbackCaption(produk, harga, keunggulan, alamat, wa);
       }
+    } else {
+      // Fallback Generator jika API Key tidak diisi
+      setTimeout(() => {
+        resultText.textContent = fallbackCaption(produk, harga, keunggulan, alamat, wa);
+      }, 800);
     }
+  });
 
-    function copyCaption() {
-      const text = document.getElementById('caption-output').innerText;
-      navigator.clipboard.writeText(text);
+  function fallbackCaption(produk, harga, keunggulan, alamat, wa) {
+    const waText = wa ? `wa.me/${wa.replace(/[^0-9]/g, '')}` : 'link di bio';
+    return `Lagi cari ${produk} berkualitas dengan harga bersahabat? ✨\n\n${keunggulan ? keunggulan + '!' : 'Kualitas terjamin dan nyaman digunakan.'}\n\n💰 Harga: Cuma Rp${harga}\n📍 Lokasi Toko: ${alamat || 'Cigondewah Hilir'}\n\nYuk order sekarang sebelum kehabisan! Klik ${waText} untuk pemesanan cepat.\n\n#UMKMCigondewah #CigondewahHilir #ProdukLokal #KonveksiCigondewah`;
+  }
+
+  // Copy Result Text
+  document.getElementById('btn-copy-result').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(resultText.textContent);
       alert('Caption berhasil disalin!');
+    } catch (e) {
+      console.error(e);
     }
-  </script>
+  });
+
+  // ---------- Instagram Tool Handler ----------
+  function openInstagram() {
+    // Mencoba membuka aplikasi Instagram secara langsung di perangkat mobile
+    window.location.href = "instagram://app";
+    setTimeout(() => {
+      window.open("https://www.instagram.com", "_blank");
+    }, 1200);
+  }
+
+  // ---------- WhatsApp wa.me Link Generator ----------
+  function generateWaLink() {
+    const num = document.getElementById('wa-gen-num').value.replace(/[^0-9]/g, '');
+    const msg = encodeURIComponent(document.getElementById('wa-gen-msg').value);
+    if (!num) {
+      alert('Masukkan nomor WhatsApp terlebih dahulu.');
+      return;
+    }
+    let formattedNum = num;
+    if (formattedNum.startsWith('0')) {
+      formattedNum = '62' + formattedNum.slice(1);
+    }
+    const link = `https://wa.me/${formattedNum}?text=${msg}`;
+    document.getElementById('wa-link-text').textContent = link;
+    document.getElementById('wa-link-output').classList.remove('hidden');
+  }
+
+  function copyWaLink() {
+    const link = document.getElementById('wa-link-text').textContent;
+    navigator.clipboard.writeText(link);
+    alert('Link WhatsApp berhasil disalin!');
+  }
+
+  // ---------- Gemini Chatbot Assistant ----------
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+  const chatBox = document.getElementById('chat-box');
+
+  async function handleChat() {
+    const userMsg = chatInput.value.trim();
+    if (!userMsg) return;
+
+    // Append User Message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'bg-accent-600 text-white p-2.5 rounded-lg max-w-[85%] ml-auto text-right';
+    userDiv.textContent = userMsg;
+    chatBox.appendChild(userDiv);
+
+    chatInput.value = '';
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    // Loading State
+    const botDiv = document.createElement('div');
+    botDiv.className = 'bg-white/10 text-slate-200 p-2.5 rounded-lg max-w-[85%]';
+    botDiv.textContent = 'Mengetik...';
+    chatBox.appendChild(botDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+
+    const apiKey = document.getElementById('in-api-key').value.trim();
+    const botPrompt = `Kamu adalah pendamping KKN dari UKRI untuk UMKM Desa Cigondewah Hilir. Jawab pertanyaan berikut dengan singkat, ramah, dan praktis bagi warga desa: ${userMsg}`;
+
+    if (apiKey) {
+      try {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ contents: [{ parts: [{ text: botPrompt }] }] })
+        });
+        const data = await res.json();
+        botDiv.textContent = data.candidates[0].content.parts[0].text.trim();
+      } catch (e) {
+        botDiv.textContent = "Maaf, terjadi masalah koneksi. Pastikan API Key valid atau coba lagi nanti.";
+      }
+    } else {
+      setTimeout(() => {
+        botDiv.textContent = "Untuk pertanyaan lebih lanjut mengenai foto produk dan pemasaran, silakan coba praktikkan modul 1-4 di atas ya! (Isi API Key di atas untuk jawaban AI langsung).";
+      }, 600);
+    }
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  chatSend.addEventListener('click', handleChat);
+  chatInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleChat();
+  });
+
+  // ---------- Smooth Link Redirection for Moduls ----------
+  document.querySelectorAll('a[href^="#modul-"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const num = link.getAttribute('href').replace('#modul-', '');
+      activateTab(num, false);
+      document.getElementById('tab-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
 </body>
 </html>
