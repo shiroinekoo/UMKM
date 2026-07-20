@@ -3,7 +3,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Web Edukasi Digital UMKM Cigondewah Hilir',
-  description: 'Platform edukasi jualan online dan otomatisasi deskripsi produk untuk UMKM Desa Cigondewah Hilir.',
+  description: 'Platform edukasi jualan online UMKM Desa Cigondewah Hilir.',
 };
 
 export default function RootLayout({
@@ -13,9 +13,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="antialiased selection:bg-primary-100 selection:text-primary-800">
-        {children}
-      </body>
+      <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body className="antialiased bg-gray-50">{children}</body>
     </html>
   );
 }
