@@ -84,6 +84,9 @@
   </main>
 
   <script>
+    // API Key langsung dimasukkan di variabel JS
+    const GEMINI_API_KEY = "AQ.Ab8RN6IwAfaHR1FbokmuvVKPmfGqJa3yvCPv3_3cZNNKGQkkxA";
+
     async function generateCaption() {
       const nama = document.getElementById('in-nama-produk').value.trim();
       const harga = document.getElementById('in-harga-produk').value.trim();
@@ -101,26 +104,37 @@
       btn.disabled = true;
       btn.innerText = 'Membuat Caption...';
 
+      const promptText = `Buatkan caption promosi media sosial yang menarik, ramah, dan menjual untuk produk UMKM berikut:
+- Nama Produk: ${nama}
+- Harga: Rp ${harga}
+- Detail/Keunggulan: ${detail || 'Tidak ada'}
+
+Sertakan emoji yang relevan dan hashtag di bagian akhir. Gunakan bahasa Indonesia yang santai dan menarik pembeli.`;
+
       try {
-        // Memanggil API backend serverless di Vercel
-        const response = await fetch('/api/generate-caption', {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ nama, harga, detail })
+          body: JSON.stringify({
+            contents: [{
+              parts: [{ text: promptText }]
+            }]
+          })
         });
 
         const data = await response.json();
 
-        if (!response.ok) {
-          throw new Error(data.error || 'Terjadi kesalahan pada server');
+        if (data.error) {
+          alert('Error: ' + data.error.message);
+        } else {
+          const textResult = data.candidates[0].content.parts[0].text;
+          captionOutput.innerText = textResult;
+          resultBox.classList.remove('hidden');
         }
-
-        captionOutput.innerText = data.caption;
-        resultBox.classList.remove('hidden');
       } catch (err) {
-        alert('Gagal membuat caption: ' + err.message);
+        alert('Gagal menghubungkan ke AI. Periksa koneksi internet atau API Key Anda.');
         console.error(err);
       } finally {
         btn.disabled = false;
